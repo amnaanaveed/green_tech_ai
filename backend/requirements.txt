@@ -1,0 +1,21 @@
+# --- PDF Extraction & Data Processing ---
+PyPDF2==3.0.1
+
+# --- Vector Database & Embeddings ---
+pinecone==3.1.0
+sentence-transformers==2.5.1
+
+# --- Backend Server (FastAPI) ---
+fastapi==0.110.0
+uvicorn==0.29.0
+python-dotenv==1.0.1
+pydantic==2.6.4
+
+# --- LLM APIs (The Brain Fallback System) ---
+google-generativeai==0.4.1
+groq==0.4.2
+google-generativeai 
+fastapi 
+uvicorn 
+pydantic
+ python-dotenv

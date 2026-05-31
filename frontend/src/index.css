@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0fdf4; 
+  color: #1f2937;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  background: white;
+}
+
+/* --- Sidebar / Filters Area --- */
+.sidebar {
+  width: 300px;
+  background-color: #14532d;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #166534;
+  padding-bottom: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  color: #bbf7d0;
+  font-weight: 600;
+}
+
+.filter-group select {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #f0fdf4;
+  color: #14532d;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+
+/* --- Chat Area --- */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* 🔥 Premium Modern Gradient Background */
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  /* 🔥 Subtle Dot Pattern */
+  background-image: radial-gradient(#bbf7d0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.chat-history {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: transparent;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #22c55e;
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background-color: #ffffff; 
+  color: #1f2937;
+  border-bottom-left-radius: 2px;
+  border: 1px solid #e5e7eb;
+}
+
+.ai-badge {
+  font-size: 0.7rem;
+  background: #f0fdf4;
+  color: #15803d;
+  padding: 4px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+  display: inline-block;
+  font-weight: bold;
+  border: 1px solid #bbf7d0;
+}
+
+/* --- Input Area --- */
+.input-area {
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+  background: #fafafa;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.input-area input:focus {
+  border-color: #22c55e;
+}
+
+.input-area button {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-area button:hover {
+  background-color: #15803d;
+}
+
+.input-area button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.loader {
+  align-self: flex-start;
+  color: #16a34a;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+/* 🔥 MIC BUTTON DESIGN */
+/* 🔥 MIC BUTTON DESIGN */
+.mic-button {
+  background: transparent !important; /* Send button wala green background hata diya */
+  color: #94a3b8 !important;
+  border: none;
+  padding: 0 10px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none !important;
+}
+
+.mic-button:hover {
+  color: #10b981 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Jab awaz sun raha ho toh Red Pulse karega */
+.mic-button.listening {
+  color: #ef4444 !important;
+  animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6)); }
+  100% { transform: scale(1); }
+}
+
+/* Humne normal send button ki class update ki hai taake mic aur send alag nazar aayein */
+.send-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
