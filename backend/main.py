@@ -11,14 +11,15 @@ app = FastAPI(
 )
 
 # CORS Middleware (React frontend ko allow karne ke liye)
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Production mein isay apne Vercel URL se replace karenge
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Root Endpoint
 @app.get("/")
 def read_root():
