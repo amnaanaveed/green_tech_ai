@@ -1,13 +1,21 @@
-from sentence_transformers import SentenceTransformer
+import google.generativeai as genai
 from config import settings
 
-print("🧠 Loading HuggingFace Model for Search...")
-# Load the model once when the server starts to save time
-embedding_model = SentenceTransformer(settings.EMBEDDING_MODEL)
+# Configure Gemini API
+genai.configure(api_key=settings.GEMINI_API_KEY)
+
+print("🧠 Using Gemini Embedding Model for Search...")
 
 def get_query_embedding(query: str) -> list:
     """
-    User ke text sawal ko 384-dimensional vector mein convert karta hai.
+    User ke text question ko embedding vector mein convert karta hai.
+    Lightweight hai aur Render free tier pe easily chalega.
     """
-    # Generate and return the vector as a Python list
-    return embedding_model.encode(query).tolist()
+
+    response = genai.embed_content(
+        model="models/embedding-001",
+        content=query,
+        task_type="retrieval_query"
+    )
+
+    return response["embedding"]
