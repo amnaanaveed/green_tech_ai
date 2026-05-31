@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 // Hamara FastAPI server is address par chal raha hai
-const API_URL = 'http://127.0.0.1:8000';
-
+const API_URL = 'https://green-tech-ai.onrender.com';
 export const sendMessageToAI = async (query, cropFilter, answerLength) => {
   try {
     const response = await axios.post(`${API_URL}/chat`, {
