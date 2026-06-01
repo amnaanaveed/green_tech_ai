@@ -13,7 +13,7 @@ def get_query_embedding(query: str) -> list:
     """
 
     response = genai.embed_content(
-        model="models/embedding-001",
+        model="models/text-embedding-004",
         content=query,
         task_type="retrieval_query"
     )

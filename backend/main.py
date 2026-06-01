@@ -10,34 +10,46 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS Middleware (React frontend ko allow karne ke liye)
-from fastapi.middleware.cors import CORSMiddleware
-
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "*"
+        # Production mein:
+        # "https://your-vercel-app.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 # Root Endpoint
 @app.get("/")
 def read_root():
-    return {"message": "GreenTech AI Enterprise Server is Running! 🚀"}
+    return {
+        "message": "GreenTech AI Enterprise Server is Running! 🚀"
+    }
 
 # Main Chat Endpoint
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
-    """
-    Frontend se sawal aur filters receive karta hai aur AI ka jawab return karta hai.
-    """
-    # LLM service ko request pass karein
-    result = get_answer_from_ai(request)
-    
-    # Response schema ke mutabiq data wapis bhejein
-    return ChatResponse(
-        status="success",
-        query=request.query,
-        answer=result["answer"],
-        ai_used=result["source_ai"]
-    )
+
+    try:
+        # AI response generate karo
+        result = get_answer_from_ai(request)
+
+        return ChatResponse(
+            status="success",
+            query=request.query,
+            answer=result["answer"],
+            ai_used=result["source_ai"]
+        )
+
+    except Exception as e:
+
+        return ChatResponse(
+            status="error",
+            query=request.query,
+            answer=f"System Error: {str(e)}",
+            ai_used="None"
+        )
